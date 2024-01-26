@@ -1,46 +1,33 @@
-def deductionType(a:str, n:int):
-    if "fast" in a.lower():
-        return fastDeduction(n)
-    elif "slow" in a.lower():
-        return slowDeduction(n)
-    else:
-        raise Exception("No specified type of deduction.")
+import random
 
-def fastDeduction(n:int):
+student_set = set()
 
-    modified_number = abs(n)
-    modified_number = [int(x) for x in str(modified_number)]
-    if modified_number[-1] in (1, 3, 5, 7, 9):
-        return print(f"This number is odd!\n")
-    else:
-        return print(f"This number is even!\n")
+def add(name):
+	student_set.add(name)
+	main()
 
-def slowDeduction(n:int):
-    i = 0
-    while True:
-        if n == 2*i:
-            return print("This number is even!\n")
-            break
-        elif n < 2*i:
-            return print("This number is odd!\n")
-            break
-        else:
-            i += 1
-            print(f"{i}, {2*i}")
+def pick():
+	chosen_student = random.choice(tuple(student_set))
+	print(chosen_student)
+	student_set.remove(chosen_student)
+	main()
 
 def main():
-    try:
-        number = int(input("What is the number?\n    -> "))
-        answer = input("What deduction type do you want? (OPTIONS: SLOW OR FAST)\n    -> ")
-
-        deductionType(answer, number)
-    except:
-        print("\nTry again!\n")
-        main()
-    else:
-        main()
-
+	command = input("Yo")
+	
+	command = list(command)
+	
+	if len(command) > 1 and command[0] == "add":
+		add(command[1])
+	else:
+		if "add" in command:
+			add(input("Who do you want to add?"))
+		elif "pick" in command:
+			pick()
+		else:
+			print("Insert a valid command!")
 
 
 if __name__ == "__main__":
-    main()
+	main()
+	
