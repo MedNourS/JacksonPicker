@@ -30,9 +30,10 @@ def pick(bool:bool):
 
 def find(name:str):
     if name in student_set:
-        print("Student is in list")
+        print("Student is in list\n")
     else:
-        print("Student is not in list")
+        print("Student is not in list\n")
+    main(True)
 
 def getListInfo():
         if len(student_set) > 0:
@@ -56,6 +57,8 @@ def parser():
                                 remove(split_command[1])
                         elif split_command[0].lower() == "pick" and split_command[1].lower() == "-r":
                                 pick(True)
+                        elif split_command[0].lower() == "find":
+                                find(split_command[1])
                 elif command == "add":
                         add(input("Student's name:"))
                 elif command == "remove":
